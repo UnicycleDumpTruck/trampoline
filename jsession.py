@@ -6,7 +6,7 @@ import json
 import os
 
 import telemetry
-
+from loguru import logger
 
 class Session:
     """Class for tracking jump sessions"""
@@ -38,6 +38,7 @@ class Session:
             telemetry.send_log_message(log_string)
         except:
             print("Error sending log packet from jsession.py")
+            logger.warning("Error sending Splunk message from jsession.py")
 
         self.starting_time = 0
 #        self.ending_time = 0

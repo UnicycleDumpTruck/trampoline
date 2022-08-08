@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-
+#!/usr/bin/env python3
+import sys
 from pygame.locals import (
     K_1,
     K_2,
@@ -26,7 +26,12 @@ import pygame
 import requests
 import json
 
+from loguru import logger
 import telemetry
+
+logger.remove()
+logger.add(sys.stderr, level="INFO")
+logger.add("main.log", rotation="1024 MB")
 
 beam_was_broken = 0
 beam_brake = 0
@@ -122,6 +127,8 @@ if automationhat.is_automation_hat():
 message_display("Jump!")
 
 running = True
+
+logger.info("Trampoline code commencing.")
 
 while running:
     for event in pygame.event.get():
